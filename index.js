@@ -10,7 +10,7 @@ let currentQuestionIndex = 0
 let totalCorrect = 0
 let timeLeft = 30
 let timerInterval 
-
+fgd
 $startGameButton.addEventListener("click", startGame)
 $nextQuestionButton.addEventListener("click", displayNextQuestion)
 
