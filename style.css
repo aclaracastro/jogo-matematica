@@ -5,7 +5,7 @@
   }
   
   body {
-    background-color: #a06d6d;
+    background-color: #61a0bd;
     color: #000000;
     height: 100vh;
     display: flex;
@@ -14,7 +14,7 @@
   }
   
   .container {
-    background-color: #9f9fe6;
+    background-color: #c9c9e9;
     width: 90%;
     max-width: 800px;
     border-radius: 6px;

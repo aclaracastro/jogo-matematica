@@ -10,7 +10,9 @@ let currentQuestionIndex = 0
 let totalCorrect = 0
 let timeLeft = 30
 let timerInterval 
-fgd
+
+const questions_round = 7; //qnt de questao por round
+
 $startGameButton.addEventListener("click", startGame)
 $nextQuestionButton.addEventListener("click", displayNextQuestion)
 
@@ -19,15 +21,27 @@ function startGame() {
   $questionsContainer.classList.remove("hide")
   startTimer()
   displayNextQuestion()
-  shuffleArray(questions);
+  shuffleArray(questions)
 }
 
 function shuffleArray(array) {
     for (let i = array.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1)); 
+      const j = Math.floor(Math.random() * (i + 1));
       [array[i], array[j]] = [array[j], array[i]]; 
     }
-}
+
+    array.forEach(question => {
+        for (let i = question.answers.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [question.answers[i], question.answers[j]] = [question.answers[j], question.answers[i]];
+        }
+      });
+    
+      // Agora, você pega as 7 primeiras questões para mostrar na rodada
+      questionsToDisplay = array.slice(0, questions_round);  // Pega 7 questões
+      currentQuestionIndex = 0;  // Reseta o índice da pergunta
+} 
+
   
 
 function startTimer() {
@@ -147,65 +161,130 @@ function finishGame() {
 
 
 const questions = [
-  {
-    question: "Dentro de qual elemento HTML colocamos o JavaScript?",
-    answers: [
-      { text: "<javascript>", correct: false },
-      { text: "<js>", correct: false },
-      { text: "<script>", correct: true },
-      { text: "<scripting>", correct: false }
-    ]
-  },
-  {
-    question: "Onde é o lugar correto para inserir JavaScript?",
-    answers: [
-      { text: "Tanto no <head> quanto no <body> está correto", correct: true },
-      { text: "No <body>", correct: false },
-      { text: "No <head>", correct: false },
-      { text: "Em outro lugar", correct: false }
-    ]
-  },
-  {
-    question: 'Qual é a sintaxe correta para se referir a um script externo chamado "xxx.js"',
-    answers: [
-      { text: '<script src="xxx.js">', correct: true },
-      { text: '<script href="xxx.js">', correct: false },
-      { text: '<script name="xxx.js">', correct: false },
-      { text: "Nenhuma das alternativas", correct: false }
-    ]
-  },
-  {
-    question: 'O arquivo JavaScript externo deve conter a tag <script>',
-    answers: [
-      { text: "Verdadeiro", correct: false },
-      { text: "Falso", correct: true }
-    ]
-  },
-  {
-    question: 'Como escrever "Hello World" numa caixa de alerta?',
-    answers: [
-      { text: 'msg("Hello World");', correct: false },
-      { text: 'alert("Hello World");', correct: true },
-      { text: 'msgBox("Hello World");', correct: false },
-      { text: 'alertBox("Hello World");', correct: false }
-    ]
-  },
-  {
-    question: 'Como podemos criar uma função no JavaScript?',
-    answers: [
-      { text: 'function:myFunction()', correct: false },
-      { text: 'function myFunction()', correct: true },
-      { text: 'function = myFunction()', correct: false },
-      { text: 'Nenhum desses códigos criaria uma função', correct: false }
-    ]
-  },
-  {
-    question: 'Como podemos chamar uma função chamada "minhaFuncao"?',
-    answers: [
-      { text: 'call minhaFuncao()', correct: false },
-      { text: 'call function minhaFuncao()', correct: false },
-      { text: 'Nenhum desses códigos chamaria essa função', correct: false },
-      { text: 'minhaFuncao()', correct: true },
-    ]
-  },
-]
+    {
+        question: "Quanto é 15 + 8?",
+        answers: [
+          { text: "23", correct: true },
+          { text: "25", correct: false },
+          { text: "22", correct: false },
+          { text: "24", correct: false }
+        ]
+    },
+    {
+        question: "Quanto é 34 - 17?",
+        answers: [
+          { text: "17", correct: true },
+          { text: "18", correct: false },
+          { text: "16", correct: false },
+          { text: "19", correct: false }
+        ]
+    },
+    {
+        question: "Quanto é 56 ÷ 8?",
+        answers: [
+          { text: "7", correct: true },
+          { text: "8", correct: false },
+          { text: "6", correct: false },
+          { text: "9", correct: false }
+        ]
+    },
+    {
+        question: "Quanto é 100 + 200?",
+        answers: [
+          { text: "300", correct: true },
+          { text: "400", correct: false },
+          { text: "250", correct: false },
+          { text: "350", correct: false }
+        ]
+    },
+    {
+        question: "Quanto é 120 - 45?",
+        answers: [
+          { text: "75", correct: true },
+          { text: "70", correct: false },
+          { text: "80", correct: false },
+          { text: "90", correct: false }
+        ]
+    },
+    {
+        question: "Quanto é 9 x 5?",
+        answers: [
+          { text: "45", correct: true },
+          { text: "40", correct: false },
+          { text: "50", correct: false },
+          { text: "48", correct: false }
+        ]
+    },
+    {
+        question: "Quanto é 81 ÷ 9?",
+        answers: [
+          { text: "9", correct: true },
+          { text: "8", correct: false },
+          { text: "10", correct: false },
+          { text: "7", correct: false }
+        ]
+    },
+    {
+        question: "Quanto é 25 + 75?",
+        answers: [
+          { text: "100", correct: true },
+          { text: "95", correct: false },
+          { text: "110", correct: false },
+          { text: "90", correct: false }
+        ]
+    },
+    {
+        question: "Quanto é 11 x 4?",
+        answers: [
+          { text: "44", correct: true },
+          { text: "42", correct: false },
+          { text: "46", correct: false },
+          { text: "48", correct: false }
+        ]
+    },
+    {
+        question: "Quanto é 64 ÷ 8?",
+        answers: [
+          { text: "8", correct: true },
+          { text: "7", correct: false },
+          { text: "6", correct: false },
+          { text: "9", correct: false }
+        ]
+    },
+    {
+        question: "Quanto é 150 + 50?",
+        answers: [
+          { text: "200", correct: true },
+          { text: "210", correct: false },
+          { text: "190", correct: false },
+          { text: "180", correct: false }
+        ]
+    },
+    {
+        question: "Quanto é 8 x 12?",
+        answers: [
+          { text: "96", correct: true },
+          { text: "98", correct: false },
+          { text: "90", correct: false },
+          { text: "100", correct: false }
+        ]
+    },
+    {
+        question: "Quanto é 120 - 45?",
+        answers: [
+          { text: "75", correct: true },
+          { text: "80", correct: false },
+          { text: "70", correct: false },
+          { text: "90", correct: false }
+        ]
+    },
+    {
+        question: "Quanto é 200 ÷ 4?",
+        answers: [
+          { text: "50", correct: true },
+          { text: "40", correct: false },
+          { text: "60", correct: false },
+          { text: "55", correct: false }
+        ]
+    }
+];
