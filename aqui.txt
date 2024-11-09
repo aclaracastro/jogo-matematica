@@ -1,1 +1,5 @@
-
+Objetivo: 
+O objetivo do jogo é responder corretamente o maior número de perguntas 
+matemáticas em uma série limitada de rodadas antes que o tempo acabe. O jogo 
+testa a capacidade do usuário de resolver questões matemáticas básicas sob 
+pressão
